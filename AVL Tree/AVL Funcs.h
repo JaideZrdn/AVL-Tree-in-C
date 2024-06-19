@@ -28,6 +28,7 @@ Node* rotateRightLeft(Node* root);
 Node* rotateLeftRight(Node* root);
 Node* createNode(int key);
 Node* insert(Node* father, int key);
+Node* balanceTree(Node* father);
 void inOrder(Node* root);
 
 #endif /* AVL_Funcs_h */

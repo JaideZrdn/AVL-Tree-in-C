@@ -83,46 +83,46 @@ Node* createNode(int key){
     return newNode;
 }
 
-Node* balanceTree(Node* father){
-    int balance = getBalance(father);
+Node* balanceTree(Node* root){
+    int balance = getBalance(root);
     
     if (balance > 1) { //ta desbalanceado pra esquerda
-        if (getBalance(father->left) > 0) { //O filho ta maior pra esqeurda
-            return rotateRight(father);
+        if (getBalance(root->left) > 0) { //O filho ta maior pra esqeurda
+            return rotateRight(root);
         } else { //O filho ta melhor pra direita
-            return rotateLeftRight(father);
+            return rotateLeftRight(root);
         }
     }
     
     if (balance < -1) { //ta desbalanceado pra direita
-        if (getBalance(father->right) < 0) { //O filho ta maior pra direita
-            return rotateLeft(father);
+        if (getBalance(root->right) < 0) { //O filho ta maior pra direita
+            return rotateLeft(root);
         } else { //O filho ta maior pra esquerda
-            return rotateRightLeft(father);
+            return rotateRightLeft(root);
         }
     }
     
-    return father;
+    return root;
 }
 
-Node* insert(Node* father, int key){
-    if (father == NULL){ //Não tem raiz, adiciona esse cara ae
+Node* insert(Node* root, int key){
+    if (root == NULL){ //Não tem raiz, adiciona esse cara ae
         return createNode(key);
     }
     
-    if (key < father->key){ //Atualiza o valor do pai em todos os nós passados durate a inserção
-        father->left = insert(father->left, key);
-        father->left->father = father;
-    } else if (key > father->key){
-        father->right = insert(father->right, key);
-        father->right->father = father;
+    if (key < root->key){ //Atualiza o valor do pai em todos os nós passados durate a inserção
+        root->left = insert(root->left, key);
+        root->left->father = root;
+    } else if (key > root->key){
+        root->right = insert(root->right, key);
+        root->right->father = root;
     } else { //Não recebe valores duplicados
         return NULL;
     }
     
-    father->height = max(height(father->left), height(father->right)) + 1; // Atuliazando a altura do pai dele
+    root->height = max(height(root->left), height(root->right)) + 1; // Atuliazando a altura do pai dele
     
-    return balanceTree(father); //Balanceia a árvore recursivamente apenas passando por todos os nós passados durante a inserção
+    return balanceTree(root); //Balanceia a árvore recursivamente apenas passando por todos os nós passados durante a inserção
 }
 
 void inOrder(Node* root) {
@@ -132,3 +132,76 @@ void inOrder(Node* root) {
         inOrder(root->right);
     }
 }
+
+Node* searchInTree(int key, Node* root){
+    
+    if (root == NULL){
+        return NULL; //Node is not in the tree
+    }
+    
+    if (root->key == key){
+        return root;
+    } else if (key > root->key){
+        return searchInTree(key, root->right);
+    } else {
+        return searchInTree(key, root->left);
+    }
+    
+}
+
+Node* treeMinimum(Node* root){
+    
+    if (root == NULL){
+        return NULL;
+    }
+    
+    if (root->left != NULL){ //The min value of my tree will be the most left node
+        return treeMinimum(root->left);
+    } else {
+        return root;
+    }
+}
+
+Node* treeMaximum(Node* root){
+    
+    if (root == NULL){ //That is not a root
+        return NULL;
+    }
+    
+    if (root->right != NULL){ //The max value of my tree will be most right node
+        return treeMaximum(root->right);
+    }else {
+        return root;
+    }
+}
+
+Node* successor(Node* node){
+    if (node->right != NULL){
+        return treeMinimum(node->right);
+    }
+    
+    Node* scs = node->father;
+    while (scs != NULL && scs->right == node){
+        node = scs;
+        scs = node->father;
+    }
+    
+    return scs;
+    
+}
+
+Node* predeccessor(Node* node){
+    if (node->left != NULL){
+        return treeMaximum(node->right);
+    }
+    
+    Node* pcs = node->father;
+    while (pcs != NULL && pcs->left == node){
+        node = pcs;
+        pcs = node->father;
+    }
+    
+    return pcs;
+}
+
+
