@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6441BA222C2209E600193610 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 6441BA212C2209E600193610 /* main.c */; };
+		64662DA52C220ACE00D8DE8B /* AVL Funcs.c in Sources */ = {isa = PBXBuildFile; fileRef = 64662DA42C220ACE00D8DE8B /* AVL Funcs.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		6441BA1E2C2209E600193610 /* AVL Tree */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "AVL Tree"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6441BA212C2209E600193610 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		64662DA32C220ACE00D8DE8B /* AVL Funcs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AVL Funcs.h"; sourceTree = "<group>"; };
+		64662DA42C220ACE00D8DE8B /* AVL Funcs.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "AVL Funcs.c"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				6441BA212C2209E600193610 /* main.c */,
+				64662DA32C220ACE00D8DE8B /* AVL Funcs.h */,
+				64662DA42C220ACE00D8DE8B /* AVL Funcs.c */,
 			);
 			path = "AVL Tree";
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64662DA52C220ACE00D8DE8B /* AVL Funcs.c in Sources */,
 				6441BA222C2209E600193610 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
